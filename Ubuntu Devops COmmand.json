@@ -1,0 +1,215 @@
+{
+  "ubuntu_devops_commands": [
+    {
+      "command": "apt-get update",
+      "description": "Updates the list of available packages and their versions from repositories.",
+      "example": "sudo apt-get update"
+    },
+    {
+      "command": "apt-get upgrade",
+      "description": "Installs the newest versions of all packages currently installed on the system.",
+      "example": "sudo apt-get upgrade"
+    },
+    {
+      "command": "systemctl start",
+      "description": "Starts a system service.",
+      "example": "sudo systemctl start nginx"
+    },
+    {
+      "command": "systemctl stop",
+      "description": "Stops a system service.",
+      "example": "sudo systemctl stop nginx"
+    },
+    {
+      "command": "systemctl restart",
+      "description": "Restarts a system service.",
+      "example": "sudo systemctl restart nginx"
+    },
+    {
+      "command": "systemctl enable",
+      "description": "Enables a service to start automatically on boot.",
+      "example": "sudo systemctl enable nginx"
+    },
+    {
+      "command": "systemctl disable",
+      "description": "Disables a service from starting automatically on boot.",
+      "example": "sudo systemctl disable nginx"
+    },
+    {
+      "command": "top",
+      "description": "Displays real-time system processes, resource usage, and performance statistics.",
+      "example": "top"
+    },
+    {
+      "command": "htop",
+      "description": "An enhanced version of top that provides an interactive system-monitoring interface.",
+      "example": "htop"
+    },
+    {
+      "command": "ps aux",
+      "description": "Displays detailed information about all running processes on the system.",
+      "example": "ps aux"
+    },
+    {
+      "command": "netstat",
+      "description": "Displays network connections, routing tables, and network interface statistics.",
+      "example": "netstat -tuln"
+    },
+    {
+      "command": "ss",
+      "description": "A replacement for netstat that provides detailed information about network sockets.",
+      "example": "ss -tuln"
+    },
+    {
+      "command": "ifconfig",
+      "description": "Configures and displays network interfaces (replaced by ip command in modern distributions).",
+      "example": "ifconfig"
+    },
+    {
+      "command": "ip addr",
+      "description": "Displays and configures network interfaces and IP addresses.",
+      "example": "ip addr show"
+    },
+    {
+      "command": "ping",
+      "description": "Tests the reachability of a network host by sending ICMP packets.",
+      "example": "ping google.com"
+    },
+    {
+      "command": "traceroute",
+      "description": "Displays the route packets take to a network host.",
+      "example": "traceroute google.com"
+    },
+    {
+      "command": "curl",
+      "description": "Transfers data to or from a server using various network protocols (HTTP, FTP, etc.).",
+      "example": "curl https://api.example.com"
+    },
+    {
+      "command": "wget",
+      "description": "Downloads files from the web.",
+      "example": "wget https://example.com/file.zip"
+    },
+    {
+      "command": "docker",
+      "description": "Manages Docker containers and images.",
+      "example": "docker ps"
+    },
+    {
+      "command": "docker-compose",
+      "description": "Defines and runs multi-container Docker applications.",
+      "example": "docker-compose up"
+    },
+    {
+      "command": "kubectl",
+      "description": "Manages Kubernetes clusters.",
+      "example": "kubectl get pods"
+    },
+    {
+      "command": "helm",
+      "description": "Manages Kubernetes charts (packages of pre-configured Kubernetes resources).",
+      "example": "helm install mychart ./mychart"
+    },
+    {
+      "command": "git",
+      "description": "Version control system for tracking changes in files and coordinating work on those files.",
+      "example": "git clone https://github.com/user/repository.git"
+    },
+    {
+      "command": "ansible",
+      "description": "IT automation tool used for configuration management and application deployment.",
+      "example": "ansible-playbook playbook.yml"
+    },
+    {
+      "command": "terraform",
+      "description": "Infrastructure as code tool used to define and provision infrastructure resources.",
+      "example": "terraform apply"
+    },
+    {
+      "command": "vagrant",
+      "description": "Builds and manages virtual machine environments.",
+      "example": "vagrant up"
+    },
+    {
+      "command": "cron",
+      "description": "Scheduler for automating tasks at specified intervals.",
+      "example": "crontab -e"
+    },
+    {
+      "command": "df",
+      "description": "Displays disk space usage of file systems.",
+      "example": "df -h"
+    },
+    {
+      "command": "du",
+      "description": "Estimates file and directory space usage.",
+      "example": "du -sh /var/log"
+    },
+    {
+      "command": "chmod",
+      "description": "Changes file or directory permissions.",
+      "example": "chmod 755 script.sh"
+    },
+    {
+      "command": "chown",
+      "description": "Changes file or directory ownership.",
+      "example": "chown user:user file.txt"
+    },
+    {
+      "command": "iptables",
+      "description": "Manages Linux kernel-level firewall rules.",
+      "example": "sudo iptables -L"
+    },
+    {
+      "command": "ufw",
+      "description": "Uncomplicated Firewall, a simpler interface to iptables for managing firewall rules.",
+      "example": "sudo ufw allow 80/tcp"
+    },
+    {
+      "command": "journalctl",
+      "description": "Queries and displays logs from the systemd journal.",
+      "example": "journalctl -xe"
+    },
+    {
+      "command": "nginx",
+      "description": "Manages the Nginx web server.",
+      "example": "sudo nginx -s reload"
+    },
+    {
+      "command": "apachectl",
+      "description": "Controls the Apache HTTP server.",
+      "example": "sudo apachectl restart"
+    },
+    {
+      "command": "mysql",
+      "description": "MySQL database management.",
+      "example": "mysql -u root -p"
+    },
+    {
+      "command": "psql",
+      "description": "PostgreSQL database management.",
+      "example": "psql -U postgres"
+    },
+    {
+      "command": "mongo",
+      "description": "MongoDB command-line interface for database management.",
+      "example": "mongo"
+    },
+    {
+      "command": "rsync",
+      "description": "Efficiently syncs files and directories between locations.",
+      "example": "rsync -avz /source/ /destination/"
+    },
+    {
+      "command": "scp",
+      "description": "Securely copies files between systems over SSH.",
+      "example": "scp file.txt user@remote:/path/"
+    },
+    {
+      "command": "ssh",
+      "description": "Connects to a remote server via SSH (Secure Shell).",
+      "example": "ssh user@remote"
+    }
+  ]
+}
+

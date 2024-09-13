@@ -1,0 +1,4 @@
+curl https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs/apache_logs | grep 'images/web/2009/banner.png'
+
+download remote file
+wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs/apache_logs

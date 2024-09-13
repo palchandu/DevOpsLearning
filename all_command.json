@@ -1,0 +1,253 @@
+```json
+{
+  "basic_commands": [
+    {
+      "command": "pwd",
+      "description": "Prints the current working directory.",
+      "example": "pwd"
+    },
+    {
+      "command": "ls",
+      "description": "Lists files and directories in the current directory.",
+      "example": "ls"
+    },
+    {
+      "command": "cd",
+      "description": "Changes the current directory.",
+      "example": "cd /path/to/directory"
+    },
+    {
+      "command": "cp",
+      "description": "Copies files or directories.",
+      "example": "cp source.txt destination.txt"
+    },
+    {
+      "command": "mv",
+      "description": "Moves or renames files or directories.",
+      "example": "mv oldname.txt newname.txt"
+    },
+    {
+      "command": "rm",
+      "description": "Removes files or directories.",
+      "example": "rm file.txt"
+    },
+    {
+      "command": "mkdir",
+      "description": "Creates a new directory.",
+      "example": "mkdir new_directory"
+    },
+    {
+      "command": "rmdir",
+      "description": "Removes an empty directory.",
+      "example": "rmdir empty_directory"
+    },
+    {
+      "command": "touch",
+      "description": "Creates a new empty file or updates the timestamp of an existing file.",
+      "example": "touch newfile.txt"
+    },
+    {
+      "command": "cat",
+      "description": "Displays the content of a file.",
+      "example": "cat file.txt"
+    },
+    {
+      "command": "nano",
+      "description": "Opens a text editor to edit files.",
+      "example": "nano file.txt"
+    },
+    {
+      "command": "chmod",
+      "description": "Changes the file permissions.",
+      "example": "chmod 755 script.sh"
+    },
+    {
+      "command": "chown",
+      "description": "Changes the file owner and group.",
+      "example": "chown user:group file.txt"
+    },
+    {
+      "command": "find",
+      "description": "Searches for files and directories based on conditions.",
+      "example": "find /home -name file.txt"
+    },
+    {
+      "command": "grep",
+      "description": "Searches for a pattern in files.",
+      "example": "grep 'search_term' file.txt"
+    },
+    {
+      "command": "df",
+      "description": "Displays disk space usage.",
+      "example": "df -h"
+    },
+    {
+      "command": "du",
+      "description": "Displays disk usage of files and directories.",
+      "example": "du -sh /path/to/directory"
+    },
+    {
+      "command": "free",
+      "description": "Displays memory usage.",
+      "example": "free -h"
+    },
+    {
+      "command": "ps",
+      "description": "Displays currently running processes.",
+      "example": "ps aux"
+    },
+    {
+      "command": "kill",
+      "description": "Terminates a process by its ID.",
+      "example": "kill 1234"
+    },
+    {
+      "command": "top",
+      "description": "Displays real-time system information, including CPU and memory usage.",
+      "example": "top"
+    },
+    {
+      "command": "htop",
+      "description": "An enhanced version of 'top' with an interactive process viewer.",
+      "example": "htop"
+    },
+    {
+      "command": "wget",
+      "description": "Downloads files from the internet.",
+      "example": "wget http://example.com/file.zip"
+    },
+    {
+      "command": "curl",
+      "description": "Transfers data from or to a server using protocols like HTTP, FTP, etc.",
+      "example": "curl http://example.com"
+    },
+    {
+      "command": "tar",
+      "description": "Archives or extracts files from a tar archive.",
+      "example": "tar -czvf archive.tar.gz /path/to/directory"
+    },
+    {
+      "command": "zip",
+      "description": "Compresses files into a zip archive.",
+      "example": "zip archive.zip file1.txt file2.txt"
+    },
+    {
+      "command": "unzip",
+      "description": "Extracts files from a zip archive.",
+      "example": "unzip archive.zip"
+    },
+    {
+      "command": "ssh",
+      "description": "Connects to a remote server via SSH.",
+      "example": "ssh user@server.com"
+    },
+    {
+      "command": "scp",
+      "description": "Copies files between hosts using SSH.",
+      "example": "scp file.txt user@server.com:/path/to/destination"
+    }
+  ],
+  "advanced_commands": [
+    {
+      "command": "apt-get",
+      "description": "Manages packages on Ubuntu, including installation, removal, and updates.",
+      "example": "sudo apt-get install package_name"
+    },
+    {
+      "command": "dpkg",
+      "description": "Installs, removes, and manages Debian packages.",
+      "example": "sudo dpkg -i package.deb"
+    },
+    {
+      "command": "systemctl",
+      "description": "Controls the systemd system and service manager.",
+      "example": "sudo systemctl restart apache2"
+    },
+    {
+      "command": "journalctl",
+      "description": "Views logs from the systemd journal.",
+      "example": "sudo journalctl -xe"
+    },
+    {
+      "command": "ufw",
+      "description": "Manages the uncomplicated firewall on Ubuntu.",
+      "example": "sudo ufw allow 22"
+    },
+    {
+      "command": "iptables",
+      "description": "Manages firewall rules for packet filtering and NAT.",
+      "example": "sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT"
+    },
+    {
+      "command": "crontab",
+      "description": "Schedules tasks to run at specified intervals.",
+      "example": "crontab -e"
+    },
+    {
+      "command": "rsync",
+      "description": "Efficiently syncs files and directories between two locations.",
+      "example": "rsync -avz /source/ /destination/"
+    },
+    {
+      "command": "lsof",
+      "description": "Lists open files and the processes using them.",
+      "example": "lsof -i :80"
+    },
+    {
+      "command": "netstat",
+      "description": "Displays network connections, routing tables, and interface statistics.",
+      "example": "netstat -tuln"
+    },
+    {
+      "command": "ping",
+      "description": "Sends ICMP echo requests to check network connectivity.",
+      "example": "ping google.com"
+    },
+    {
+      "command": "traceroute",
+      "description": "Traces the route packets take to a destination.",
+      "example": "traceroute google.com"
+    },
+    {
+      "command": "mount",
+      "description": "Mounts a filesystem to a directory.",
+      "example": "sudo mount /dev/sdb1 /mnt"
+    },
+    {
+      "command": "umount",
+      "description": "Unmounts a filesystem from a directory.",
+      "example": "sudo umount /mnt"
+    },
+    {
+      "command": "dd",
+      "description": "Copies and converts data between files or devices, often used for creating bootable drives.",
+      "example": "sudo dd if=/dev/sda of=/dev/sdb bs=4M"
+    },
+    {
+      "command": "fdisk",
+      "description": "Manages disk partitions.",
+      "example": "sudo fdisk /dev/sda"
+    },
+    {
+      "command": "gparted",
+      "description": "Graphical partition editor for managing disk partitions.",
+      "example": "sudo gparted"
+    },
+    {
+      "command": "chmod",
+      "description": "Changes the permissions of a file or directory.",
+      "example": "chmod 755 script.sh"
+    },
+    {
+      "command": "chown",
+      "description": "Changes the owner and group of a file or directory.",
+      "example": "chown user:group file.txt"
+    },
+    {
+      "command": "xargs",
+      "description": "Builds and executes command lines from standard input.",
+      "example": "find . -name '*.txt' | xargs rm"
+    }
+  ]
+}
+```

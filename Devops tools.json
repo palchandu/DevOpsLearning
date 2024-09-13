@@ -1,0 +1,130 @@
+{
+  "devops_tools": [
+    {
+      "tool": "Jenkins",
+      "description": "An open-source automation server for continuous integration and continuous delivery (CI/CD).",
+      "usage": "Automates building, testing, and deploying applications."
+    },
+    {
+      "tool": "GitLab CI",
+      "description": "A built-in CI/CD pipeline tool for GitLab to automatically build, test, and deploy code.",
+      "usage": "Pipeline automation for development and operations teams."
+    },
+    {
+      "tool": "CircleCI",
+      "description": "A CI/CD platform for automating testing and deployment of code changes.",
+      "usage": "Streamlines code integration and delivery with automated pipelines."
+    },
+    {
+      "tool": "Travis CI",
+      "description": "A cloud-based CI service that automatically builds and tests code hosted on GitHub.",
+      "usage": "Continuous integration and testing of software projects."
+    },
+    {
+      "tool": "Docker",
+      "description": "A platform for developing, shipping, and running applications in lightweight containers.",
+      "usage": "Containerization of applications to ensure consistency across environments."
+    },
+    {
+      "tool": "Kubernetes",
+      "description": "An open-source platform for automating deployment, scaling, and management of containerized applications.",
+      "usage": "Orchestrates containerized applications in clusters."
+    },
+    {
+      "tool": "Terraform",
+      "description": "An infrastructure as code (IaC) tool for provisioning and managing cloud infrastructure.",
+      "usage": "Automates the provisioning and management of infrastructure resources."
+    },
+    {
+      "tool": "Ansible",
+      "description": "An open-source automation tool for configuration management, application deployment, and orchestration.",
+      "usage": "Automates IT tasks and infrastructure management with playbooks."
+    },
+    {
+      "tool": "Puppet",
+      "description": "An open-source configuration management tool that automates infrastructure management.",
+      "usage": "Manages and automates infrastructure provisioning and configuration."
+    },
+    {
+      "tool": "Chef",
+      "description": "An automation tool for infrastructure configuration and management through code.",
+      "usage": "Writes infrastructure as code for managing servers and applications."
+    },
+    {
+      "tool": "Nagios",
+      "description": "An open-source monitoring system that provides alerts on system health and performance.",
+      "usage": "Monitors servers, networks, and infrastructure for availability and performance."
+    },
+    {
+      "tool": "Prometheus",
+      "description": "An open-source monitoring and alerting toolkit for applications and infrastructure.",
+      "usage": "Monitors and collects time-series data from services and infrastructure."
+    },
+    {
+      "tool": "Grafana",
+      "description": "An open-source platform for monitoring, visualization, and analysis of metrics from various sources.",
+      "usage": "Visualizes performance data from Prometheus and other sources with dashboards."
+    },
+    {
+      "tool": "ELK Stack (Elasticsearch, Logstash, Kibana)",
+      "description": "A set of tools for searching, analyzing, and visualizing log data in real-time.",
+      "usage": "Centralizes log collection and monitoring of system events and metrics."
+    },
+    {
+      "tool": "Splunk",
+      "description": "A tool for monitoring, searching, and analyzing machine-generated data in real-time.",
+      "usage": "Gathers and analyzes logs and metrics for system health and performance."
+    },
+    {
+      "tool": "Consul",
+      "description": "A service mesh and service discovery tool for networking microservices.",
+      "usage": "Provides service discovery and configuration for dynamic infrastructure."
+    },
+    {
+      "tool": "Vault",
+      "description": "A tool for managing and securely storing secrets, credentials, and access controls.",
+      "usage": "Secures sensitive data such as API keys, passwords, and certificates."
+    },
+    {
+      "tool": "Nginx",
+      "description": "A web server and reverse proxy server known for its high performance and scalability.",
+      "usage": "Serves as a web server, load balancer, and reverse proxy for web applications."
+    },
+    {
+      "tool": "Apache",
+      "description": "An open-source web server used to serve web content and applications.",
+      "usage": "Hosts websites and serves content over the web."
+    },
+    {
+      "tool": "SaltStack",
+      "description": "An open-source tool for configuration management, remote execution, and automation.",
+      "usage": "Manages infrastructure by automating configuration and deployment tasks."
+    },
+    {
+      "tool": "Selenium",
+      "description": "An open-source tool for automating web browser actions for testing purposes.",
+      "usage": "Automates web application testing across different browsers."
+    },
+    {
+      "tool": "New Relic",
+      "description": "A performance monitoring tool for applications and infrastructure in real-time.",
+      "usage": "Monitors and optimizes application performance and user experiences."
+    },
+    {
+      "tool": "PagerDuty",
+      "description": "An incident management and alerting platform for IT operations and DevOps teams.",
+      "usage": "Manages and resolves system incidents with automated alerts and on-call scheduling."
+    },
+    {
+      "tool": "Slack",
+      "description": "A collaboration tool for teams that supports communication, file sharing, and integration with DevOps tools.",
+      "usage": "Provides team communication with integration for DevOps alerting and notifications."
+    },
+    {
+      "tool": "Zabbix",
+      "description": "An open-source monitoring tool for servers, networks, and services.",
+      "usage": "Monitors IT infrastructure and tracks performance metrics."
+    }
+  ]
+}
+
