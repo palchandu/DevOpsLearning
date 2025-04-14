@@ -222,3 +222,174 @@ These commands cover **system health**, **performance monitoring**, **network di
 Setting up passwordless authentication for Ansible is crucial for seamless automation. Ansible connects to remote hosts using SSH, and passwordless authentication eliminates the need to manually enter passwords during execution. This is achieved using SSH key-based authentication.
 ### To make a password less authentication in simple way 
 - On Ansible server(from where you manage other server) run command **ssh-keygen**
+
+## List down all ansible modules
+Ansible modules are the building blocks of Ansible automation. They are small units of code that perform specific tasks, such as managing files, packages, services, cloud resources, and more. Below is a list of commonly used Ansible module categories and examples of modules within each category:
+
+---
+
+### **1. File and Directory Management**
+- **Modules**:
+  - `file`: Manage files and directories (e.g., create, delete, set permissions).
+  - `copy`: Copy files from the control node to managed nodes.
+  - `fetch`: Fetch files from remote nodes to the control node.
+  - `template`: Deploy Jinja2 template files.
+  - `replace`: Replace lines in a file using regular expressions.
+  - `lineinfile`: Ensure a specific line is present in a file.
+
+---
+
+### **2. Package Management**
+- **Modules**:
+  - `apt`: Manage packages on Debian-based systems.
+  - `yum`: Manage packages on Red Hat-based systems.
+  - `dnf`: Manage packages on Fedora and RHEL 8+.
+  - `pip`: Manage Python packages.
+  - `zypper`: Manage packages on SUSE systems.
+  - `package`: Abstract module for managing packages across different platforms.
+
+---
+
+### **3. Service Management**
+- **Modules**:
+  - `service`: Manage services (start, stop, restart, enable).
+  - `systemd`: Manage systemd services.
+  - `supervisorctl`: Manage services under Supervisor.
+  - `win_service`: Manage services on Windows.
+
+---
+
+### **4. User and Group Management**
+- **Modules**:
+  - `user`: Manage user accounts.
+  - `group`: Manage groups.
+  - `authorized_key`: Add or remove SSH authorized keys for users.
+
+---
+
+### **5. Networking**
+- **Modules**:
+  - `uri`: Interact with web services (e.g., make HTTP requests).
+  - `firewalld`: Manage firewalld rules.
+  - `iptables`: Manage iptables rules.
+  - `netconf_config`: Manage network devices using Netconf.
+  - `ios_config`: Manage Cisco IOS configurations.
+
+---
+
+### **6. Cloud Automation**
+- **Modules**:
+  - **AWS**:
+    - `ec2`: Manage EC2 instances.
+    - `s3`: Manage S3 buckets.
+    - `rds`: Manage RDS instances.
+    - `elb`: Manage Elastic Load Balancers.
+  - **Azure**:
+    - `azure_rm_virtualmachine`: Manage Azure VMs.
+    - `azure_rm_networkinterface`: Manage Azure network interfaces.
+    - `azure_rm_storageaccount`: Manage Azure storage accounts.
+  - **Google Cloud**:
+    - `gcp_compute_instance`: Manage Google Cloud compute instances.
+    - `gcp_storage_bucket`: Manage Google Cloud storage buckets.
+
+---
+
+### **7. Database Management**
+- **Modules**:
+  - `mysql_db`: Manage MySQL databases.
+  - `postgresql_db`: Manage PostgreSQL databases.
+  - `mongodb_user`: Manage MongoDB users.
+  - `mssql_db`: Manage Microsoft SQL Server databases.
+
+---
+
+### **8. System Information and Control**
+- **Modules**:
+  - `setup`: Gather facts about remote systems.
+  - `ping`: Test connectivity to hosts.
+  - `command`: Run commands on remote nodes.
+  - `shell`: Run shell commands on remote nodes.
+  - `raw`: Execute raw commands without a shell.
+  - `debug`: Print debug messages in playbooks.
+
+---
+
+### **9. Containers**
+- **Modules**:
+  - `docker_container`: Manage Docker containers.
+  - `docker_image`: Manage Docker images.
+  - `kubernetes`: Manage Kubernetes resources.
+  - `helm`: Deploy Helm charts to Kubernetes.
+
+---
+
+### **10. Security**
+- **Modules**:
+  - `selinux`: Manage SELinux policies.
+  - `ufw`: Manage uncomplicated firewall rules.
+  - `fail2ban`: Configure Fail2Ban jails.
+
+---
+
+### **11. Windows-Specific Modules**
+- **Modules**:
+  - `win_copy`: Copy files to Windows hosts.
+  - `win_command`: Run commands on Windows.
+  - `win_shell`: Run shell commands on Windows.
+  - `win_user`: Manage Windows user accounts.
+  - `win_feature`: Manage Windows features.
+
+---
+
+### **12. Cloud-Native and CI/CD**
+- **Modules**:
+  - `git`: Manage Git repositories.
+  - `jenkins_job`: Manage Jenkins jobs.
+  - `vault`: Interact with HashiCorp Vault.
+
+---
+
+### **13. Monitoring and Logging**
+- **Modules**:
+  - `nagios`: Manage Nagios monitoring configurations.
+  - `zabbix_host`: Manage Zabbix hosts.
+  - `grafana_datasource`: Manage Grafana data sources.
+
+---
+
+### **14. Utilities**
+- **Modules**:
+  - `assert`: Validate conditions or assumptions.
+  - `wait_for`: Wait for a condition to be met (e.g., a port to be open).
+  - `pause`: Pause execution.
+  - `meta`: Perform meta operations like including roles or playbooks.
+
+---
+
+### **15. Custom Modules**
+- You can create your own custom modules in Python, Bash, or any other language if the default modules don’t meet your requirements.
+
+---
+
+### **How to Find More Modules**
+1. Run the command to list all available modules:
+   ```bash
+   ansible-doc -l
+   ```
+   This lists all modules installed on your system.
+
+2. Get detailed documentation for a specific module:
+   ```bash
+   ansible-doc <module_name>
+   ```
+   Example:
+   ```bash
+   ansible-doc file
+   ```
+
+3. Visit the official module documentation:
+   [Ansible Module Index](https://docs.ansible.com/ansible/latest/collections/index_module.html)
+
+---
+
+Let me know if you'd like examples for specific modules!
