@@ -393,3 +393,41 @@ Ansible modules are the building blocks of Ansible automation. They are small un
 ---
 
 Let me know if you'd like examples for specific modules!
+
+### Create ansible playbook and run it
+Command to run: ansible-playbook -vvv -i inventory first-playbook.yml
+Create a ansible playbook
+
+```
+---
+- name: Install and start nginx
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+```
+
+Writing inventory file
+```
+[webserver]
+172.31.10.42
+
+[dbserver]
+
+
+```
