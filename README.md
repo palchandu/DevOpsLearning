@@ -702,4 +702,91 @@ Dynamic Inventory uses **inventory scripts** or **plugins** to communicate with 
 
 Dynamic Inventory is essential for managing modern infrastructure where hosts frequently change. It automates the process of inventory creation and ensures that your Ansible playbooks always have up-to-date information about the target systems. With dynamic inventory, Ansible becomes a powerful tool for managing cloud resources, containers, and large-scale environments.
 
+Installing Terraform on Ubuntu involves a few steps. Terraform is distributed as a single binary, and you can install it directly from HashiCorp's official repository.
+
+---
+
+### **Step 1: Update Your System**
+First, ensure your system is up-to-date:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+---
+
+### **Step 2: Install Required Dependencies**
+Install `gnupg`, `software-properties-common`, and `curl` to fetch and verify Terraform's repository:
+```bash
+sudo apt install -y gnupg software-properties-common curl
+```
+
+---
+
+### **Step 3: Add HashiCorp's Official GPG Key**
+To ensure secure installation, add HashiCorp's GPG public key:
+```bash
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+```
+
+---
+
+### **Step 4: Add the HashiCorp Repository**
+Add the HashiCorp repository to your system's APT sources list:
+```bash
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+```
+
+---
+
+### **Step 5: Update APT and Install Terraform**
+Update APT and install Terraform using the following commands:
+```bash
+sudo apt update
+sudo apt install -y terraform
+```
+
+---
+
+### **Step 6: Verify Terraform Installation**
+Check the installed Terraform version to verify it is installed correctly:
+```bash
+terraform --version
+```
+
+---
+
+### **Step 7 (Optional): Enable Tab Auto-Completion**
+You can enable tab completion for Terraform commands by adding the following to your shell configuration file:
+```bash
+terraform -install-autocomplete
+```
+
+---
+
+### **Terraform Installation is Complete**
+You can now start using Terraform. For example:
+1. Create a working directory:
+   ```bash
+   mkdir terraform-project
+   cd terraform-project
+   ```
+
+2. Write your first Terraform configuration file (e.g., `main.tf`).
+
+3. Initialize Terraform in your project directory:
+   ```bash
+   terraform init
+   ```
+
+Let me know if you face any issues during the installation process!
+
+#### Actually terraform runs on four commands
+- Run terraform init to initialize the working directory and download the AWS provider plugin.
+- Run terraform plan to preview the changes Terraform will make.
+- Run terraform apply to create the EC2 instance.
+- Run terraform destroy to delete the EC2 instance.
+
+once you install the terraform you should understand that terraform basically runs on four commands one is
+
+terraform init one is terraform plan which we discussed about then terraform apply and terraform test drive we talked
 
