@@ -434,31 +434,137 @@ Writing inventory file
 
 From above we learned basic but
 
-perfect so what we have done we have also executed our first ansible Playbook
+- perfect so what we have done we have also executed our first ansible Playbook
 
-now what are the next things to learn in ansible once you learn this you need to
+- now what are the next things to learn in ansible once you learn this you need to
 
-understand that okay so I wrote my answerable playbook and this is looking very simple I learned ansible completely
+- understand that okay so I wrote my answerable playbook and this is looking very simple I learned ansible completely
 
-no the reason here is this is a very basic installation right we just installed
+- no the reason here is this is a very basic installation right we just installed
 
-engineic and we just started the in the next service but there are cases where you want to use your ansible playbooks
+- engineic and we just started the in the next service but there are cases where you want to use your ansible playbooks
 
 
-to configure your kubernetes cluster okay so this is a very classic example let me tell you what I wanted to uh what
+- to configure your kubernetes cluster okay so this is a very classic example let me tell you what I wanted to uh what
 
-usually people do in real time organizations let's say kubernetes.yml
+- usually people do in real time organizations let's say kubernetes.yml
 
-okay so the task here is create
+- okay so the task here is create
 
-three ec2 instances on AWS okay and
+- three ec2 instances on AWS okay and
 
-configure one of those
-ec2 instances as master and configure and two other ec2 instances as worker
+- configure one of those
+- ec2 instances as master and configure and two other ec2 instances as worker
 
-okay so what is the task create three ec2 instances on AWS configure one ec2
+- okay so what is the task create three ec2 instances on AWS configure one ec2
 
-instance as master and configure two ec2 instances as worker so for that what usually people or what usually develops
+- instance as master and configure two ec2 instances as worker so for that what usually people or what usually develops
+
+
+- okay so what is the task create three ec2 instances on AWS configure one ec2
+
+- instance as master and configure two ec2 instances as worker so for that what usually people or what usually develops
+
+- engine is test is for this uh we use terraform okay and for the two other tasks we use ansible so this is uh you
+
+- done using ansible and this is also done using ansible so people might ask can't we do this using uh ansible we can do
+
+- that okay so we can always do uh the installation or uh stuff like creation
+
+- using ansible as well but terraform is a tool that is specifically designed for that purposes okay you can create ec2
+
+- instances using ansible as well uh it's like for example if you want to purchase movie tickets okay you can do it through
+
+- bookmyshow as well and you can do it through paytm as well but you would always go for the best option right so
+
+- the best option here in this case is terraform so terraform is an infrastructure management tool or it's a
+
+- instruction as code tool so that's why uh whenever you wanted to create anything with respect to infrastructure
+
+- go with terraform so uh devops Engineers usually create these ec2 instances using terraform and perform these two actions
+
+- using ansible now if these two actions cannot be written in one one simple Playbook right for example if you look
+
+- at our first playbook.yaml this has only two tasks but if you want to configure both your kubernetes control plane as
+
+- well as your kubernetes data plane or Master as well as your worker nodes your playbook will become very huge okay
+
+- so almost you will have some 50 to 60 tasks and if you start writing this entire 50 to 60 tasks in one
+
+- playbook.aml file it will be impossible to read okay so for that very own reason
+
+- what ansible has done and there will be lot of variables and there will be lot of uh configuration files you have to
+
+- handle some errors right to avoid that uh specific kind of problems what
+
+- ansible has done is it has come up with a concept called ansible roles okay what
+
+- is that ansible roles now what is ansible rules so ansible
+
+- rules is nothing but like you know in a very simple terminology if I have to explain your ansible roles ansible roles
+
+- is efficient way of writing ansible playbooks that will only improve your efficiency to write complex playbooks
+
+- okay the best example that you can do that you can give is whenever some interviewer interviewer is asking you
+
+- this question you can simply explain them that okay let's say I want to configure a kubernetes using ansible so
+
+- it will have close to some 50 to 60 tasks and you have a lot of variables
+
+- you have lot of parameters you have certificates right you have secrets that you have to configure while creating
+
+- this kubernetes cluster so for that very own reason if you try to do it with rules like you can segregate each and
+
+- everything and you can properly structure your ansible playbooks so that's why the concept of roles is
+
+- introduced so if you want to start playing with rules okay what you can simply do is you
+
+- can use this command called ansible Galaxy okay and then you can say initialize okay ansible Galaxy role init
+
+- stands for initialize and just start saying that uh I want to create a role
+
+- for kubernetes okay so let me uh create a folder for this before that
+
+- okay so this is my second playbook for example my second Playbook is to configure kubernetes so what I'll do is
+
+- I'll do ansible hyphen Galaxy role init kubernetes now let us see what
+
+- happens as you execute this command okay what happened is ansible said that role
+
+- kubernetes was created successfully what is that let me do LS so if you see LS if
+
+- you do LS you'll see that there is a folder called kubernetes that is created let me open that folder and see what is
+
+- inside that okay LS
+
+- kubernetes okay you will see bunch of files that are created for you this is the concept of roles okay if you do LS
+
+- hyphen LTR and see what is inside each and every folder okay so whenever you
+
+- execute this command ansible creates you bunch of files and folders okay and
+
+- using these files and folders you can structure your ansible playbooks okay so
+
+- you have templates you have files you have readme where you can explain what this Playbook is and what are the rules
+
+- and responsibilities of this Playbook you can create tasks like previously we used to write tasks in the playbook.yaml
+
+- right whereas here you will use the task and then you have handlers you have
+
+- tests vars defaults and meta I'll explain you each and every of this thing don't worry but till now what I wanted
+
+- to explain you is that whenever you want to write some complicated playbooks okay what what you would do is you will start
+
+- using the ansible Galaxy command to create roles and what happens if you
+
+- create roles is you can write structured and efficient ansible playbooks okay so
+
+- to write this entire playbooks in this live session uh it will get slightly complicated so that that's the reason
+
+- why I have put everything on my GitHub repository okay so if you see here this
+
+- is my GitHub repository I I already know that most of you are following me on GitHub and if you are not then I have
+
 
 
 Create 3 EC2 instances on AWS (Terraform)
