@@ -431,3 +431,37 @@ Writing inventory file
 
 
 ```
+
+From above we learned basic but
+
+perfect so what we have done we have also executed our first ansible Playbook
+
+now what are the next things to learn in ansible once you learn this you need to
+
+understand that okay so I wrote my answerable playbook and this is looking very simple I learned ansible completely
+
+no the reason here is this is a very basic installation right we just installed
+
+engineic and we just started the in the next service but there are cases where you want to use your ansible playbooks
+
+
+to configure your kubernetes cluster okay so this is a very classic example let me tell you what I wanted to uh what
+
+usually people do in real time organizations let's say kubernetes.yml
+
+okay so the task here is create
+
+three ec2 instances on AWS okay and
+
+configure one of those
+ec2 instances as master and configure and two other ec2 instances as worker
+
+okay so what is the task create three ec2 instances on AWS configure one ec2
+
+instance as master and configure two ec2 instances as worker so for that what usually people or what usually develops
+
+
+Create 3 EC2 instances on AWS (Terraform)
+Configure 1 of those EC2 instances as master (Ansible)
+Configure 2 other EC2 instances as worker (Ansible)
+
