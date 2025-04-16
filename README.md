@@ -218,7 +218,7 @@ Below is a comprehensive list of **Ubuntu commands** to check server health, mon
 ### Summary:
 These commands cover **system health**, **performance monitoring**, **network diagnostics**, **hardware information**, and **process management**. For regular monitoring, tools like `htop`, `glances`, and `nmon` are particularly useful. If you need further assistance or examples for specific tasks, let me know!
 
-## Ansible
+## [Ansible](https://docs.ansible.com/) 
 Setting up passwordless authentication for Ansible is crucial for seamless automation. Ansible connects to remote hosts using SSH, and passwordless authentication eliminates the need to manually enter passwords during execution. This is achieved using SSH key-based authentication.
 ### To make a password less authentication in simple way 
 - On Ansible server(from where you manage other server) run command **ssh-keygen**
