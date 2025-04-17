@@ -702,6 +702,7 @@ Dynamic Inventory uses **inventory scripts** or **plugins** to communicate with 
 
 Dynamic Inventory is essential for managing modern infrastructure where hosts frequently change. It automates the process of inventory creation and ensures that your Ansible playbooks always have up-to-date information about the target systems. With dynamic inventory, Ansible becomes a powerful tool for managing cloud resources, containers, and large-scale environments.
 
+## [Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 Installing Terraform on Ubuntu involves a few steps. Terraform is distributed as a single binary, and you can install it directly from HashiCorp's official repository.
 
 ---
