@@ -795,4 +795,4 @@ Let me know if you face any issues during the installation process!
 once you install the terraform you should understand that terraform basically runs on four commands one is
 
 terraform init one is terraform plan which we discussed about then terraform apply and terraform test drive we talked
-
+![Terraform structure](https://github.com/iam-veeramalla/write_your_first_terraform_project/blob/main/images/terraform_8.png?raw=true)
