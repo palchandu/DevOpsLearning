@@ -704,9 +704,9 @@ Dynamic Inventory is essential for managing modern infrastructure where hosts fr
 
 ## [Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
-### Terraform Examples
+### Terraform Learning and Examples
 - [https://support.cloud.tamu.edu/automate/terraform/tfexample/](https://support.cloud.tamu.edu/automate/terraform/tfexample/)
-
+- [Terraform AWS Tutorial](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-outputs)
   
 Installing Terraform on Ubuntu involves a few steps. Terraform is distributed as a single binary, and you can install it directly from HashiCorp's official repository.
 
