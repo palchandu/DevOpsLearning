@@ -827,3 +827,10 @@ resource "aws_instance" "app_learning" {
   - Detect and fix bugs early in the development cycle.
   - Reduce integration challenges when merging code from multiple developers.
   - Improve collaboration among team members.
+
+- Continuous Delivery is the practice of automatically building, testing, and preparing code changes for release to production. It ensures the code is always in a deployable state and that deployments can occur on demand with minimal effort.
+
+Key Benefits:
+- Faster time-to-market for new features.
+- Higher confidence in deployments due to automated testing.
+- Simplified, repeatable deployment processes.
