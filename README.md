@@ -819,3 +819,11 @@ resource "aws_instance" "app_learning" {
   }
 }
 ```
+
+## CI/CD 
+
+- It is a set of practices, tools, and methodologies in DevOps aimed at improving the software development lifecycle by automating the integration, testing, delivery, and deployment of code.
+- Continuous Integration is the practice of automatically building and testing code whenever developers make changes (e.g., merging code into a shared repository). The goal is to identify and fix errors early, ensuring that the codebase is always in a deployable state.
+  - Detect and fix bugs early in the development cycle.
+  - Reduce integration challenges when merging code from multiple developers.
+  - Improve collaboration among team members.
