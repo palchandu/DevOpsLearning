@@ -834,3 +834,12 @@ Key Benefits:
 - Faster time-to-market for new features.
 - Higher confidence in deployments due to automated testing.
 - Simplified, repeatable deployment processes.
+
+### To access your application so these are some standard steps that every organization has to follow without these steps you are not sure that you are delivering a right application to your customer okay so now let's try to understand what are these steps each and everything and then let us see how cicd will automate all of these things okay so firstly what is unit testing so unit
+These steps are :- 
+- Unit Testing
+- Static Code Analysis
+- Code Quality/Vulnerability
+- Automation
+- Reports
+- Deployments
