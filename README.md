@@ -796,3 +796,26 @@ once you install the terraform you should understand that terraform basically ru
 
 terraform init one is terraform plan which we discussed about then terraform apply and terraform test drive we talked
 ![Terraform structure](https://github.com/iam-veeramalla/write_your_first_terraform_project/blob/main/images/terraform_8.png?raw=true)
+
+```
+terraform {
+    required_providers {
+      aws={
+        source = "hashicorp/aws"
+      }
+    }
+    required_version = ">= 1.11.4"
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+resource "aws_instance" "app_learning" {
+  ami = "ami-0e35ddab05955cf57"
+  instance_type = "t2.micro"
+  tags = {
+    Name=var.instance_name
+  }
+}
+```
