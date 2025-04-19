@@ -1898,3 +1898,145 @@ This allows you to take advantage of the readability of Declarative syntax while
 - Use **Scripted Pipelines** for advanced, dynamic, or highly customized workflows.
 - If possible, prefer **Declarative Pipelines** as they are more maintainable and align with modern Jenkins practices. 
 
+### **SCM in Jenkins Pipeline**
+
+**SCM** stands for **Source Code Management**. In the context of a Jenkins pipeline, SCM refers to the system or tool used to manage the source code of a project. Common SCM tools include Git, Subversion (SVN), Mercurial, and others. Jenkins integrates with these SCM systems to fetch the latest code and perform various CI/CD tasks.
+
+---
+
+### **How SCM Works in Jenkins Pipeline**
+1. **Integration Point**:
+   - Jenkins pipelines integrate with SCM systems to fetch the source code for builds, tests, and deployments.
+
+2. **Pipeline Configuration**:
+   - The SCM configuration is typically specified in a `Jenkinsfile` or in the pipeline job's configuration page.
+   - Jenkins supports both Declarative and Scripted pipelines for SCM integration.
+
+3. **SCM Polling**:
+   - Jenkins can periodically poll the SCM to check for changes (e.g., new commits) and trigger pipeline runs automatically.
+   - Alternatively, webhooks can be used to notify Jenkins of changes in the SCM.
+
+---
+
+### **SCM in Declarative Pipeline**
+In a Declarative Pipeline, you can define the SCM configuration using the `checkout` step or directly in the `pipeline` block.
+
+#### **Example with Git:**
+```groovy name=Jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Checkout Code') {
+            steps {
+                // Clone the repository
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+            }
+        }
+    }
+}
+```
+
+#### **Example with Specific Git Repository:**
+```groovy name=Jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Checkout Code') {
+            steps {
+                // Use Git plugin to clone the repo
+                git branch: 'main', url: 'https://github.com/your-repo/your-project.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+            }
+        }
+    }
+}
+```
+
+---
+
+### **SCM in Scripted Pipeline**
+In a Scripted Pipeline, you have more flexibility and can use Groovy scripting to define SCM configurations.
+
+#### **Example with Git:**
+```groovy name=Jenkinsfile
+node {
+    stage('Checkout Code') {
+        // Checkout the code from GitHub
+        checkout([$class: 'GitSCM', 
+                  branches: [[name: '*/main']], 
+                  userRemoteConfigs: [[url: 'https://github.com/your-repo/your-project.git']]])
+    }
+    stage('Build') {
+        echo 'Building the application...'
+    }
+}
+```
+
+---
+
+### **SCM Polling Example**
+You can configure Jenkins to detect changes in the SCM system using polling or webhooks. For polling, use the `pollSCM` trigger in the pipeline.
+
+#### **Declarative Pipeline with Polling:**
+```groovy name=Jenkinsfile
+pipeline {
+    agent any
+    triggers {
+        pollSCM('H/5 * * * *') // Poll every 5 minutes
+    }
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/your-repo/your-project.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+            }
+        }
+    }
+}
+```
+
+---
+
+### **Common SCM Systems Supported by Jenkins**
+1. **Git**:
+   - Most popular SCM tool integrated with Jenkins.
+   - Git plugin is typically used for integration.
+2. **Subversion (SVN)**:
+   - Jenkins supports SVN through the Subversion plugin.
+3. **Mercurial**:
+   - Requires the Mercurial plugin.
+4. **Perforce**:
+   - Supported using the Perforce plugin.
+5. **Bitbucket, GitHub, GitLab**:
+   - Specific plugins for seamless integration with these platforms.
+
+---
+
+### **SCM Features in Jenkins**
+- **Branch Management**:
+  Automatically handles multiple branches in repositories using jobs like Multibranch Pipeline.
+- **Webhooks**:
+  SCM systems like GitHub or GitLab can trigger Jenkins pipelines via webhooks.
+- **Tagging**:
+  Jenkins can create or use tags in SCM for releases or deployments.
+- **Commit History**:
+  Jenkins fetches commit history to display changes and authors in the pipeline logs.
+
+---
+
+### **Conclusion**
+SCM in Jenkins pipelines plays a critical role in automating the CI/CD process by fetching, managing, and tracking source code changes. Whether you use Declarative or Scripted pipelines, SCM integration ensures that your pipeline always works with the latest code version from the repository.
+
