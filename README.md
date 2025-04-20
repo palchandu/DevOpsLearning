@@ -2151,3 +2151,31 @@ In Jenkins, **Nodes** and **Clouds** are key concepts related to distributed bui
 - **Nodes** are the fundamental building blocks for executing jobs in Jenkins, and they can be static or manually configured.
 - **Clouds** bring dynamic scalability to Jenkins by provisioning nodes on-demand in cloud environments.
 - Together, they enable Jenkins to support diverse and scalable CI/CD workflows. Let me know if you'd like help setting up nodes or integrating a cloud provider in Jenkins!
+
+## [How to Enable Password Authentication in AWS ec2 Instances](https://rakeshwrites.medium.com/how-to-enable-password-authentication-in-aws-ec2-instances-26fbdddd74b0#:~:text=Step%201:%20Log%20in%20to,Enjoy%20:)
+To enable password authentication and add a user for SSH login on an AWS EC2 instance, first connect to the instance using SSH with a key pair. Then, use the adduser command to create a new user and set a password using passwd. Finally, modify the sshd_config file to enable password authentication, restart the SSH service, and you can log in using the new user's password. [1, 2, 3]  
+Detailed Steps: [2, 2, 3, 3]  
+
+1. Connect to the instance: [2, 2, 3, 3]  
+	• Use SSH with your key pair: ssh -i your-key.pem username@ip_address. [2, 2, 3, 3]  
+
+2. Create the new user: [4, 4]  
+	• Use the adduser command: sudo adduser new_user. [4, 4]  
+	• The home directory might not be created by default, so verify it exists before continuing. [4, 4]  
+	• On Ubuntu, use --disabled-password if you don't want a password set initially: sudo adduser new_user --disabled-password. [4, 4]  
+
+3. Set a password: [2, 2, 3, 3]  
+	• Use the passwd command to set a password for the new user: sudo passwd new_user. [2, 2, 3, 3]  
+
+4. Edit sshd_config: [2, 2]  
+	• Edit the sshd_config file: sudo nano /etc/ssh/sshd_config. [2, 2]  
+	• Find the PasswordAuthentication parameter and change it to yes: PasswordAuthentication yes. [2, 2, 3, 3]  
+	• Optionally, enable root login by changing PermitRootLogin to yes: PermitRootLogin yes. [2, 2, 3, 3, 5, 5]  
+
+5. Restart the SSH service: [2, 3, 6, 7]  
+	• Restart the SSH service: sudo service ssh restart (for Ubuntu) or sudo service sshd restart (for CentOS). [2, 2, 3, 3]  
+
+6. Log in with the new user and password: [2, 3, 8]  
+	• You can now log in using the new user's password: ssh new_user@ip_address. [2, 2, 3, 3]  
+
+
