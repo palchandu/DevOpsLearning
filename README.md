@@ -1080,6 +1080,7 @@ CI/CD is a cornerstone of modern DevOps practices and significantly enhances pro
 
 ---
 - [Ultimate Jenkins Zero-to-hero project](https://medium.com/@harshithreddyalakanti15/ultimate-jenkins-zero-to-hero-project-be0131c1a83d)
+- [6-Step Jenkins Tutorial for Beginners](https://codefresh.io/learn/jenkins/6-step-jenkins-tutorial-for-beginners/#h-step-2-scripted-and-declarative-syntax-options)
 
 ### **Key Concepts and Terminologies in Jenkins**
 
