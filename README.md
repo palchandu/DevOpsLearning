@@ -1079,6 +1079,7 @@ CI/CD is a cornerstone of modern DevOps practices and significantly enhances pro
 **Jenkins** is one of the most popular open-source automation servers used for **Continuous Integration (CI)** and **Continuous Delivery/Deployment (CD)** in DevOps. It supports building, testing, and deploying software automatically, enabling developers to focus on code while Jenkins handles repetitive tasks.
 
 ---
+- [Ultimate Jenkins Zero-to-hero project](https://medium.com/@harshithreddyalakanti15/ultimate-jenkins-zero-to-hero-project-be0131c1a83d)
 
 ### **Key Concepts and Terminologies in Jenkins**
 
