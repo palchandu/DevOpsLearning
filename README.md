@@ -2376,3 +2376,210 @@ pipeline {
 
 This separation of responsibilities ensures scalability, better resource utilization, and a clear modular workflow in Jenkins CI/CD pipelines.
 
+### **What is JNLP in Jenkins?**
+
+**JNLP** stands for **Java Network Launch Protocol**. In the context of Jenkins, JNLP is used for communication between the Jenkins **Master (Controller)** and **Agent Nodes** when agents are configured to connect to the master over a network.
+
+---
+
+### **JNLP Agents in Jenkins**
+
+1. **Purpose**:
+   - JNLP is used to launch and manage Jenkins agents that are located on remote machines or in isolated environments.
+   - It enables the agent to communicate with the master securely over the network.
+
+2. **How it Works**:
+   - The Jenkins master generates a unique **agent JNLP file** for each agent node.
+   - The JNLP file contains connection details (e.g., the master URL and agent credentials) that the agent uses to establish communication with the master.
+   - The agent connects to the master using the JNLP protocol and starts executing jobs assigned by the master.
+
+3. **When to Use**:
+   - When agents are running on remote machines that cannot directly connect to the master node (e.g., due to network restrictions, firewalls, or NAT).
+   - For dynamic or temporary agents, such as those running in Docker containers or cloud environments.
+
+---
+
+### **How to Configure a JNLP Agent in Jenkins**
+
+#### **Step 1: Configure Jenkins Master**
+1. Go to **Manage Jenkins** → **Manage Nodes and Clouds**.
+2. Add a new node:
+   - Click **New Node** → Enter a name for the node (e.g., `jnlp-agent`) → Select **Permanent Agent** → Click **OK**.
+3. Configure the node:
+   - **Remote root directory**: Specify a directory on the agent machine (e.g., `/home/jenkins`).
+   - **Launch Method**: Select **Launch agent by connecting it to the controller** (JNLP).
+   - Save the configuration.
+
+#### **Step 2: Download the Agent JAR (Agent Machine)**
+1. On the agent machine, download the **`agent.jar`**:
+   - Go to the Jenkins master’s web interface: `http://<jenkins-master-url>/computer/<agent-name>/`.
+   - Click the **"Download agent.jar"** link.
+
+#### **Step 3: Run the JNLP Agent**
+1. Open a terminal on the agent machine and navigate to the directory where `agent.jar` is downloaded.
+2. Run the following command:
+   ```bash
+   java -jar agent.jar -jnlpUrl <jnlp-url> -workDir <workspace-directory> -secret <secret-key>
+   ```
+   Replace:
+   - `<jnlp-url>`: URL to the JNLP file for the agent. You can find this on the node's page in Jenkins.
+   - `<workspace-directory>`: The directory where Jenkins will store jobs and files.
+   - `<secret-key>`: The unique secret key for the agent (visible on the node's page in Jenkins).
+
+3. The agent will connect to the Jenkins master node and appear as **Online**.
+
+---
+
+### **Advantages of Using JNLP Agents**
+- **Cross-Network Communication**:
+  - JNLP allows agents behind firewalls or NAT to connect back to the master.
+- **Dynamic Provisioning**:
+  - JNLP agents can be dynamically provisioned and destroyed in cloud or containerized environments.
+- **Ease of Use**:
+  - No need for SSH access to the agent machine; the agent pulls tasks from the master.
+
+---
+
+### **Security Considerations**
+1. **Secret Key**:
+   - The JNLP connection requires a unique **secret key** for authentication, ensuring only authorized agents can connect to the master.
+2. **TLS Encryption**:
+   - Ensure the Jenkins server is secured with HTTPS to encrypt communication between the agent and the master.
+3. **Firewall Rules**:
+   - Open the required ports for JNLP communication (default is port **50000** for inbound TCP connections).
+
+---
+
+### **When Not to Use JNLP**
+- If the agent can connect to the master directly via SSH, it is often simpler and more secure to use **SSH-based agents**.
+- If the master and agents are on the same network, JNLP may add unnecessary complexity.
+
+---
+
+### **Conclusion**
+JNLP is a protocol used in Jenkins to enable remote or dynamic agents to connect to the Jenkins master securely. It is particularly useful in distributed build environments and dynamic setups like Docker, Kubernetes, or cloud-based agents. By using `agent.jar` and the JNLP configuration, Jenkins ensures seamless connectivity between the master and remote agents.
+
+In Jenkins, **Launch Methods** refer to the ways Jenkins can connect to and manage its agent nodes. When configuring an agent node under **Manage Nodes and Clouds**, you can choose a specific **Launch Method** depending on your environment and requirements.
+
+### **Different Launch Methods in Jenkins**
+
+---
+
+## **1. Launch Agent by Connecting It to the Controller (JNLP)**
+### **Explanation**:
+- This method uses the **Java Network Launch Protocol (JNLP)** to allow the agent to connect back to the Jenkins controller.
+- The agent machine initiates the connection with the controller.
+
+### **Use Cases**:
+- When the agent machine is behind a firewall or NAT and cannot be directly accessed by Jenkins.
+- For dynamic or temporary agents such as cloud-based or containerized agents.
+
+### **How It Works**:
+1. The Jenkins controller generates a unique **JNLP file** for the agent.
+2. The agent downloads the `agent.jar` file from the Jenkins controller.
+3. The agent connects to the controller using the JNLP file and its associated secret key.
+
+### **Advantages**:
+- Works well in environments where the controller cannot directly access the agent.
+- Secure communication using secret keys and optionally over HTTPS.
+- Ideal for dynamic agents (e.g., in Docker or Kubernetes).
+
+### **Disadvantages**:
+- Requires the agent machine to have Java installed.
+- Additional configuration steps are needed (e.g., downloading `agent.jar` and running it).
+
+---
+
+## **2. Launch Agent via SSH**
+### **Explanation**:
+- This method uses **SSH (Secure Shell)** to connect and launch the agent on a remote machine.
+- The Jenkins controller establishes the connection to the agent.
+
+### **Use Cases**:
+- When the Jenkins controller has direct SSH access to the agent machine.
+- Ideal for static agents with predictable configurations.
+
+### **How It Works**:
+1. The controller uses SSH to log in to the agent machine.
+2. It remotely starts the agent process by executing `agent.jar` on the agent machine.
+
+### **Advantages**:
+- Simple setup for static agents.
+- No need to manually start the agent on the machine.
+- Works seamlessly in environments where SSH is available.
+
+### **Disadvantages**:
+- Requires SSH server to be running on the agent machine.
+- SSH keys or credentials must be securely managed in Jenkins.
+- Less flexible for dynamic or cloud-based agents.
+
+---
+
+## **3. Launch Agent via Execution of Command on the Controller**
+### **Explanation**:
+- This method launches the agent by executing a command directly on the controller.
+- The command could involve starting the agent locally or remotely.
+
+### **Use Cases**:
+- When the agent is on the same machine as the controller.
+- For legacy setups or custom configurations.
+
+### **How It Works**:
+1. The specified command is executed on the Jenkins controller.
+2. The command could, for example, start a local agent or initiate an SSH connection to a remote agent.
+
+### **Advantages**:
+- Flexible for advanced or custom setups.
+- Can be used for starting agents on demand.
+
+### **Disadvantages**:
+- Requires careful configuration of the command.
+- Not commonly used in modern Jenkins setups.
+
+---
+
+## **4. Let Jenkins Control This Agent as a Windows Service**
+### **Explanation**:
+- This method installs and manages the Jenkins agent as a **Windows service**.
+- The agent runs as a background service on a Windows machine.
+
+### **Use Cases**:
+- When the agent machine is running Windows.
+- For environments where agents need to run persistently as services.
+
+### **How It Works**:
+1. Jenkins installs the agent as a Windows service.
+2. The agent starts automatically whenever the machine boots up.
+3. Jenkins manages the service directly.
+
+### **Advantages**:
+- Ideal for Windows-based agents.
+- Persistent and reliable since the agent runs as a service.
+
+### **Disadvantages**:
+- Only applicable to Windows-based systems.
+- Requires administrator privileges for installation.
+
+---
+
+### **Comparison Table**
+
+| **Launch Method**                        | **When to Use**                                           | **Advantages**                                           | **Disadvantages**                                        |
+|------------------------------------------|----------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
+| **Launch Agent by Connecting It to the Controller (JNLP)** | Agent behind a firewall or NAT; dynamic agents (e.g., Docker, Kubernetes). | Secure, works behind NAT/firewalls, good for dynamic setups. | Requires Java, additional setup steps.                  |
+| **Launch Agent via SSH**                 | Static agents with predictable configurations.            | Simple setup, no manual agent start required.           | Requires SSH server, key/credential management.         |
+| **Launch Agent via Execution of Command on the Controller** | Advanced or legacy setups, local agents.                 | Flexible for custom setups.                             | Requires careful configuration, less common.            |
+| **Let Jenkins Control This Agent as a Windows Service** | Persistent Windows-based agents.                         | Persistent, auto-starts with the machine.               | Windows-only, requires admin privileges.                |
+
+---
+
+### **Choosing the Right Launch Method**
+The choice of launch method depends on your specific requirements:
+1. **JNLP**:
+   - Best for agents behind NAT/firewalls or dynamic environments such as cloud-based agents.
+2. **SSH**:
+   - Ideal for static Linux/Unix agents where the controller has direct SSH access.
+3. **Execution of Command**:
+   - Suitable for custom or local agent setups.
+4. **Windows Service**:
+   - Best for Windows-based persistent agents.
