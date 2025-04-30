@@ -3203,3 +3203,310 @@ sudo journalctl -u docker
 The Docker Daemon (`dockerd`) is the backbone of Docker, handling all container-related operations. Its **client-server architecture** and integration with the Linux kernel make it a powerful tool for containerization. Understanding the Docker daemon is essential for working with Docker effectively in DevOps workflows.
 
 Let me know if you'd like to dive deeper into Docker concepts or troubleshoot specific issues!
+
+
+### **What is GitHub Actions?**
+
+**GitHub Actions** is a powerful CI/CD (Continuous Integration and Continuous Delivery) platform built into GitHub. It allows you to automate tasks such as building, testing, packaging, releasing, and deploying your code directly from your repository.
+
+With GitHub Actions, you can:
+- Automate workflows triggered by events in your repository (e.g., `push`, `pull_request`).
+- Run workflows on different environments/platforms (e.g., Linux, macOS, Windows).
+- Define workflows as code using YAML files stored in the `.github/workflows/` directory.
+- Use pre-built **actions** or write custom ones to perform specific tasks.
+
+---
+
+### **Core Concepts of GitHub Actions**
+
+1. **Workflow**:
+   - A collection of jobs and steps defined in a `.yml` file.
+   - Workflows are triggered by events (e.g., `push`, `pull_request`).
+
+2. **Events**:
+   - Events are triggers that start a workflow, such as a push to a branch or the creation of a pull request.
+
+3. **Jobs**:
+   - A workflow consists of one or more jobs.
+   - Jobs are independent tasks that run in parallel or sequentially.
+
+4. **Steps**:
+   - A job consists of multiple steps.
+   - Each step runs a command or action.
+
+5. **Actions**:
+   - Predefined reusable commands used within workflows (e.g., `actions/checkout`).
+
+6. **Runners**:
+   - A GitHub-hosted or self-hosted machine that runs the jobs defined in your workflow.
+
+---
+
+### **Workflow File Structure**
+
+Workflow files are written in YAML and stored in the `.github/workflows/` directory of your repository. Below is a sample workflow file, followed by a detailed explanation:
+
+```yaml name=.github/workflows/example.yml
+name: CI Workflow
+
+# 1. Define the trigger event(s)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# 2. Define workflow jobs
+jobs:
+  build:
+    # 3. Specify the environment
+    runs-on: ubuntu-latest
+
+    # 4. Define the steps
+    steps:
+      # Step 1: Check out the code from the repository
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    # Run this job only after the "build" job succeeds
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy application
+        run: echo "Deploying the application..."
+```
+
+---
+
+### **Explanation of Each Keyword**
+
+#### **1. `name`**
+- Specifies the name of the workflow.
+- Helps identify the workflow in the GitHub Actions UI.
+
+```yaml
+name: CI Workflow
+```
+
+#### **2. `on`**
+- Defines the events that trigger the workflow.
+- Common events: `push`, `pull_request`, `schedule`, `workflow_dispatch` (manual trigger), etc.
+- You can configure triggers for specific branches, tags, or paths.
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+```
+
+#### **3. `jobs`**
+- A workflow consists of one or more jobs.
+- Jobs run independently by default but can depend on each other using the `needs` keyword.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+```
+
+#### **4. `runs-on`**
+- Specifies the environment (runner) where the job will execute.
+- Common values:
+  - `ubuntu-latest`: Latest Ubuntu environment.
+  - `macos-latest`: Latest macOS environment.
+  - `windows-latest`: Latest Windows environment.
+
+```yaml
+runs-on: ubuntu-latest
+```
+
+#### **5. `steps`**
+- Defines the individual steps within a job.
+- Each step can:
+  - Use a pre-built action (`uses` keyword).
+  - Run custom shell commands (`run` keyword).
+
+```yaml
+steps:
+  - name: Install dependencies
+    run: npm install
+```
+
+#### **6. `uses`**
+- Specifies a pre-built action to be used in a step.
+- Actions are reusable commands defined by GitHub or the community.
+- Format: `owner/repo@version`.
+  - Example: `actions/checkout@v3`.
+
+```yaml
+- name: Check out code
+  uses: actions/checkout@v3
+```
+
+#### **7. `with`**
+- Provides input parameters to an action.
+- Example: Specify the version of Node.js when using `actions/setup-node`.
+
+```yaml
+- name: Set up Node.js
+  uses: actions/setup-node@v3
+  with:
+    node-version: 16
+```
+
+#### **8. `run`**
+- Runs a shell command or script.
+- Useful for custom commands like running tests or deploying code.
+
+```yaml
+- name: Run tests
+  run: npm test
+```
+
+#### **9. `needs`**
+- Specifies dependencies between jobs.
+- A job with `needs` will not run until the specified job(s) complete successfully.
+
+```yaml
+deploy:
+  needs: build
+```
+
+#### **10. `env`**
+- Sets environment variables for a job or step.
+
+```yaml
+env:
+  NODE_ENV: production
+```
+
+#### **11. `if`**
+- Adds a conditional statement to a job or step.
+- Example: Run a step only if the branch is `main`.
+
+```yaml
+if: github.ref == 'refs/heads/main'
+```
+
+#### **12. `timeout-minutes`**
+- Sets a timeout for a job.
+- If the job exceeds the specified time, it will be canceled automatically.
+
+```yaml
+timeout-minutes: 10
+```
+
+#### **13. `strategy`**
+- Allows you to define a matrix of configurations to test multiple environments or versions.
+
+```yaml
+strategy:
+  matrix:
+    node-version: [14, 16]
+```
+
+---
+
+### **Example: A More Advanced Workflow**
+
+Here’s an advanced workflow using multiple jobs, environment variables, and a matrix strategy:
+
+```yaml name=.github/workflows/advanced-example.yml
+name: Advanced CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 16]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build application
+        run: npm run build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy application
+        run: echo "Deploying the application..."
+```
+
+---
+
+### **Key Features in the Advanced Workflow**
+1. **Matrix Strategy**:
+   - The `test` job runs tests on Node.js versions 14 and 16 simultaneously.
+
+2. **Dependencies**:
+   - The `build` job depends on the `test` job.
+   - The `deploy` job depends on the `build` job.
+
+3. **Conditional Deployment**:
+   - The `deploy` job runs only if the branch is `main`.
+
+---
+
+### **Benefits of GitHub Actions**
+1. **Integrated with GitHub**:
+   - Easy to set up and tightly integrated with your repository.
+
+2. **Reusable Actions**:
+   - Use community actions or create your own for common tasks.
+
+3. **Flexibility**:
+   - Customize workflows for different environments, branches, and events.
+
+4. **Scalability**:
+   - Use self-hosted runners for more control or GitHub-hosted runners for simplicity.
+
+---
+
+By understanding the keywords and structure of workflows in GitHub Actions, you can automate your CI/CD pipelines effectively. Let me know if you need further details or help with specific workflows!
+
