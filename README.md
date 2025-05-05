@@ -1,4 +1,4 @@
-# DevOpsLearning
+# DevOps Learning Documentation
 Below is a comprehensive list of **Ubuntu commands** to check server health, monitor server performance, and gather detailed information about the compute machine:
 
 ---
