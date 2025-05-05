@@ -5174,6 +5174,7 @@ Docker networking provides powerful tools to connect containers, isolate them, a
 
 Let me know if you'd like help setting up a specific networking scenario!
 
+## Projects for practice
 To implement the projects step by step, I'll break them down into smaller, manageable tasks. Here's a detailed guide for each project, starting from small-scale projects that focus on individual tools to larger projects that integrate multiple tools and workflows. These projects do not include Kubernetes since you haven’t learned it yet.
 
 ---
@@ -5467,5 +5468,275 @@ To implement the projects step by step, I'll break them down into smaller, manag
 
 ---
 
-Each project builds on the previous ones, so you can progress step by step to master DevOps concepts and tools. Let me know if you need more detailed guidance for a specific project!
+Here's the updated list of **DevOps projects** that include **shell scripting** alongside the other tools you've mastered (Ansible, Terraform, Jenkins, GitHub Actions, Docker, Linux, Git). These projects are arranged from **basic** to **advanced** and integrate shell scripting into each stage of your learning. This list will help you systematically practice **all your skills**.
+
+---
+
+## **Updated Project List**
+
+### **Small-Scale Projects**
+1. **Automated Web Server Setup Using Ansible**
+2. **Version Control Workflow with Git**
+3. **Infrastructure Provisioning with Terraform**
+4. **Dockerized Web Application**
+5. **Automated Server Health Check Using Shell Scripting (NEW)**
+
+---
+
+### **Medium-Scale Projects**
+6. **Continuous Integration Pipeline with GitHub Actions**
+7. **Deploy a Scalable Web Server with Ansible and Terraform**
+8. **Jenkins CI/CD Pipeline for Dockerized Application**
+9. **Automated Backup System Using Shell Scripting and Ansible (NEW)**
+
+---
+
+### **Large-Scale Projects**
+10. **GitOps Workflow with Terraform and GitHub Actions**
+11. **Multi-Environment Deployment Pipeline**
+12. **Centralized Logging and Monitoring System**
+13. **High Availability Web Application**
+14. **Automation of Application Logs Using Shell Scripting (NEW)**
+
+---
+
+## **Step-by-Step Guide for Each Project**
+
+### **Small-Scale Projects**
+
+---
+
+#### **1. Automated Web Server Setup Using Ansible**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **2. Version Control Workflow with Git**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **3. Infrastructure Provisioning with Terraform**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **4. Dockerized Web Application**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **5. Automated Server Health Check Using Shell Scripting (NEW)**  
+**Objective**: Write a shell script to monitor server health (e.g., CPU, memory, disk usage) and send alerts.  
+**Skills Practiced**: Shell scripting, Linux, Cron jobs.
+
+---
+
+#### **Steps**:
+1. **Write the Shell Script**:
+   - Create a script (`health_check.sh`) to:
+     - Check CPU, memory, and disk usage using commands like `top`, `free`, and `df`.
+     - Log the results into a file.
+     - Send an alert (e.g., email or Slack message) if usage exceeds a threshold.
+   - Example:
+     ```bash name=health_check.sh
+     #!/bin/bash
+
+     # Log file
+     LOGFILE="/var/log/server_health.log"
+
+     # Check CPU usage
+     CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+     echo "CPU Usage: $CPU_USAGE%" >> $LOGFILE
+
+     # Check memory usage
+     MEM_USAGE=$(free | awk '/Mem/{printf("%.2f"), $3/$2 * 100.0}')
+     echo "Memory Usage: $MEM_USAGE%" >> $LOGFILE
+
+     # Check disk usage
+     DISK_USAGE=$(df -h / | awk 'NR==2 {print $5}')
+     echo "Disk Usage: $DISK_USAGE" >> $LOGFILE
+
+     # Alert if thresholds are exceeded
+     if (( $(echo "$CPU_USAGE > 80.0" | bc -l) )) || (( $(echo "$MEM_USAGE > 80.0" | bc -l) )); then
+         echo "ALERT: High resource usage!" | mail -s "Server Health Alert" your_email@example.com
+     fi
+     ```
+
+2. **Test the Script**:
+   - Run the script on a test server and verify the output:
+     ```bash
+     chmod +x health_check.sh
+     ./health_check.sh
+     ```
+
+3. **Automate with Cron**:
+   - Schedule the script to run periodically using a cron job:
+     ```bash
+     crontab -e
+     ```
+     Add:
+     ```bash
+     */5 * * * * /path/to/health_check.sh
+     ```
+
+---
+
+### **Medium-Scale Projects**
+
+---
+
+#### **6. Continuous Integration Pipeline with GitHub Actions**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **7. Deploy a Scalable Web Server with Ansible and Terraform**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **8. Jenkins CI/CD Pipeline for Dockerized Application**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **9. Automated Backup System Using Shell Scripting and Ansible (NEW)**  
+**Objective**: Automate backups of a directory or database to a remote server using shell scripting and Ansible.  
+**Skills Practiced**: Shell scripting, Ansible, Linux, Cron jobs.
+
+---
+
+#### **Steps**:
+1. **Write the Shell Script**:
+   - Create a script (`backup.sh`) to:
+     - Compress the directory using `tar` or `zip`.
+     - Transfer the backup to a remote server using `scp`.
+   - Example:
+     ```bash name=backup.sh
+     #!/bin/bash
+
+     # Backup directory
+     SRC_DIR="/var/www/html"
+     BACKUP_DIR="/backup"
+     TIMESTAMP=$(date +%F-%H%M%S)
+     BACKUP_FILE="$BACKUP_DIR/backup-$TIMESTAMP.tar.gz"
+
+     # Create the backup
+     tar -czf $BACKUP_FILE $SRC_DIR
+
+     # Transfer to remote server
+     REMOTE_SERVER="user@remote-server:/remote-backup"
+     scp $BACKUP_FILE $REMOTE_SERVER
+
+     echo "Backup completed: $BACKUP_FILE"
+     ```
+
+2. **Write an Ansible Playbook**:
+   - Use Ansible to:
+     - Deploy the backup script to servers.
+     - Schedule the script using cron.
+   - Example:
+     ```yaml name=backup.yml
+     ---
+     - hosts: all
+       become: yes
+       tasks:
+         - name: Copy the backup script
+           copy:
+             src: ./backup.sh
+             dest: /usr/local/bin/backup.sh
+             mode: '0755'
+
+         - name: Schedule the backup script
+           cron:
+             name: "Automated Backup"
+             minute: "0"
+             hour: "3"
+             job: "/usr/local/bin/backup.sh"
+     ```
+
+3. **Run the Playbook**:
+   - Deploy the solution using Ansible:
+     ```bash
+     ansible-playbook -i hosts backup.yml
+     ```
+
+---
+
+### **Large-Scale Projects**
+
+---
+
+#### **10. GitOps Workflow with Terraform and GitHub Actions**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **11. Multi-Environment Deployment Pipeline**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **12. Centralized Logging and Monitoring System**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **13. High Availability Web Application**
+*(No changes from the previous step-by-step guide.)*
+
+---
+
+#### **14. Automation of Application Logs Using Shell Scripting (NEW)**  
+**Objective**: Write a shell script to archive and compress application logs periodically.  
+**Skills Practiced**: Shell scripting, Cron jobs, Linux.
+
+---
+
+#### **Steps**:
+1. **Write the Shell Script**:
+   - Create a script (`log_archive.sh`) to:
+     - Find log files older than 7 days.
+     - Compress and archive them.
+     - Delete the old logs after archiving.
+   - Example:
+     ```bash name=log_archive.sh
+     #!/bin/bash
+
+     # Define log directory and archive location
+     LOG_DIR="/var/log/myapp"
+     ARCHIVE_DIR="/var/log/archive"
+     TIMESTAMP=$(date +%F)
+
+     # Create archive directory if it doesn't exist
+     mkdir -p $ARCHIVE_DIR
+
+     # Find and compress old logs
+     find $LOG_DIR -type f -mtime +7 -exec tar -rvf $ARCHIVE_DIR/logs-$TIMESTAMP.tar {} \;
+
+     # Delete old logs after archiving
+     find $LOG_DIR -type f -mtime +7 -delete
+
+     echo "Logs archived: $ARCHIVE_DIR/logs-$TIMESTAMP.tar"
+     ```
+
+2. **Automate with Cron**:
+   - Schedule the script to run weekly:
+     ```bash
+     crontab -e
+     ```
+     Add:
+     ```bash
+     0 0 * * 0 /path/to/log_archive.sh
+     ```
+
+---
+
+### **Progression Summary**
+
+This updated list now includes shell scripting projects and their integration with other tools. You can follow this progression to master all your DevOps skills step-by-step, from small-scale projects to advanced, large-scale ones.
+
+Let me know if you'd like detailed guidance or code for any specific project!
+
 
